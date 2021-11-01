@@ -32,7 +32,8 @@ namespace DexProjectService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>(options => options.UseInMemoryDatabase("ProjectServiceDB"));;
-            
+            services.AddDbContext<Context>(options => options.UseInMemoryDatabase("UserServiceDB"));;
+
             services.AddScoped<ProjectRepository>();
             services.AddScoped<ProjectService>();
             services.AddScoped<EventService>();

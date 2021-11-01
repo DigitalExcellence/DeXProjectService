@@ -160,6 +160,29 @@ namespace DexProjectService.Controllers
 
                     await projectService.AddProject(project);
                 }
+
+                else if (eventGridEvent.EventType == "userAdded")
+                {
+                    Project project = new Project();
+                    project.Name = eventGridEvent.Data.ToString();
+                    project.Description = "Project removed event";
+
+                    await projectService.AddProject(project);
+                }
+
+                else if (eventGridEvent.EventType == "userUpdated")
+                {
+                    //var contosoEventData = eventGridEvent.Data.ToObjectFromJson<ContosoItemReceivedEventData>();
+
+                    //await projectService.AddProject(project);
+                }
+
+                else if (eventGridEvent.EventType == "userRemoved")
+                {
+                    //var contosoEventData = eventGridEvent.Data.ToObjectFromJson<ContosoItemReceivedEventData>();
+
+                    //await projectService.AddProject(project);
+                }
             }
 
             return new OkObjectResult("Could not fetch event");
