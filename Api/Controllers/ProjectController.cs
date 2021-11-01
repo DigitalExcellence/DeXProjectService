@@ -27,12 +27,16 @@ namespace DexProjectService.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProjectById(int id)
         {
-            Project project = await projectService.GetProjectById(id);
-
-            if (project == null)
+            Project project;
+            try
             {
-                return NotFound("Could not find project");
+                project = await projectService.GetProjectById(id);
             }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
 
             return Ok(project);
         }
