@@ -68,6 +68,7 @@ namespace DexProjectService.Controllers
                 return BadRequest(e.Message);
             }
 
+            await eventService.PublishEvent("projectAdded", project.Id);
             return Ok("Project added");
         }
 
@@ -153,11 +154,13 @@ namespace DexProjectService.Controllers
                 // Handle the projectRemoved event
                 else if (eventGridEvent.EventType == "projectRemoved")
                 {
+                    //https://dexuserservice.azurewebsites.net/index.html
+
+
                     //var contosoEventData = eventGridEvent.Data.ToObjectFromJson<ContosoItemReceivedEventData>();
                     Project project = new Project();
                     project.Name = "Project removed event";
                     project.Description = "Project removed event";
-
                     await projectService.AddProject(project);
                 }
 

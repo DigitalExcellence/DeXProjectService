@@ -10,6 +10,7 @@ namespace Service
     public class ProjectService
     {
         ProjectRepository projectRepository;
+        EventService eventService; 
         public ProjectService(ProjectRepository projectRepository)
         {
             this.projectRepository = projectRepository;
@@ -28,17 +29,20 @@ namespace Service
 
         public async Task AddProject(Project project)
         {
+           await eventService.PublishEvent("projectAdded", project.Id);
            await projectRepository.AddProject(project);
         }
 
 
         public async Task UpdateProject(Project project)
         {
+            await eventService.PublishEvent("projectUpdated", project.Id);
             await projectRepository.UpdateProject(project);
         }
 
         public async Task RemoveProject(int id)
         {
+            await eventService.PublishEvent("projectRemoved", id);
             await projectRepository.RemoveProject(id);
         }
     }
