@@ -76,22 +76,22 @@ namespace DexProjectService
             context.Project.Add(new Project
             {
                 Id = 1,
-                Name = "John",
-                Description = "Smith"
+                Name = "Project 1",
+                Description = "Dit is de beschrijving"
             });
 
             context.Project.Add(new Project
             {
                 Id = 2,
-                Name = "Alice",
-                Description = "Garcia"
+                Name = "Project 3",
+                Description = "Dit is de beschrijving"
             });
 
             context.Project.Add(new Project
             {
                 Id = 3,
-                Name = "Bob",
-                Description = "Bobbers"
+                Name = "Project 2",
+                Description = "Dit is de beschrijving"
             });
 
             context.SaveChanges();
